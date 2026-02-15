@@ -42,7 +42,7 @@ export default function BackgroundAccordion() {
           </span>
         </motion.div>
 
-        {/* Heading - Light weight serif for premium feel */}
+        {/* Heading */}
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

@@ -23,7 +23,7 @@ export default function Hero() {
               initial={{ clipPath: "inset(100% 0% 0% 0%)" }}
               animate={{ clipPath: "inset(0% 0% 0% 0%)" }}
               transition={{ duration: 1.4, ease: [0.65, 0, 0.35, 1] }}
-              className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[440px] aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden shadow-xl"
+              className="relative w-full max-w-[320px] sm:max-w-[380px] lg:max-w-[440px] aspect-[4/5] rounded-2xl md:rounded-3xl overflow-hidden "
             >
               <Image
                 src="/images/dr.png"
@@ -36,7 +36,6 @@ export default function Hero() {
           </div>
 
           {/* ================= CONTENT SIDE ================= */}
-          {/* order-1 on mobile (headline first for SEO/UX), order-2 on desktop */}
           <div className="flex flex-col justify-center items-center md:items-start text-center md:text-left order-1 md:order-2">
             <motion.span
               initial={{ opacity: 0 }}

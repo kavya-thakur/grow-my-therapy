@@ -2,75 +2,146 @@
 
 import { motion } from "framer-motion";
 
+const CTA_DATA = {
+  label: "Take the first step",
+  title: "Begin your path toward greater ease.",
+  description:
+    "If you’re ready to feel more grounded and supported, I invite you to schedule a consultation and take the next step toward meaningful change.",
+  footer: "Currently accepting new clients in California",
+  buttonText: "SCHEDULE A CONSULTATION",
+};
+
+const wordVariants = {
+  hidden: {
+    opacity: 0,
+    filter: "blur(8px)",
+    y: 10,
+  },
+  visible: (i) => ({
+    opacity: 1,
+    filter: "blur(0px)",
+    y: 0,
+    transition: {
+      duration: 1.2,
+      delay: i * 0.1,
+      ease: [0.2, 0.65, 0.3, 0.9],
+    },
+  }),
+};
+
+const containerVariants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { staggerChildren: 0.05 },
+  },
+};
+
 export default function CTA() {
+  const titleWords = CTA_DATA.title.split(" ");
+
   return (
     <section className="relative py-24 md:py-32 overflow-hidden bg-[#6B705C] text-[#F9F7F2]">
-      {/* Organic Grain/Noise Texture for a high-end feel */}
-      <div className="absolute inset-0 opacity-[0.03] pointer-events-none bg-[url('/noise.png')]" />
+      {/* Background Decor */}
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.08)_0%,_transparent_70%)] pointer-events-none" />
 
-      {/* Subtle radial glow to draw the eye to the center */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_center,_rgba(255,255,255,0.1)_0%,_transparent_70%)] pointer-events-none" />
-
-      <div className="relative max-w-4xl mx-auto px-6 md:px-10 text-center">
+      <motion.div
+        className="relative max-w-4xl mx-auto px-6 md:px-10 text-center"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+        variants={containerVariants}
+      >
+        {/* Label */}
         <motion.span
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          className="text-[10px] tracking-[0.4em] uppercase font-bold opacity-70 mb-6 block"
+          variants={{
+            hidden: { opacity: 0, letterSpacing: "0.2em" },
+            visible: {
+              opacity: 0.7,
+              letterSpacing: "0.4em",
+              transition: { duration: 1.5 },
+            },
+          }}
+          className="text-[10px] tracking-[0.4em] uppercase font-bold mb-6 block"
         >
-          Take the first step
+          {CTA_DATA.label}
         </motion.span>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.215, 0.61, 0.355, 1] }}
-          className="text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-tight mb-8"
-        >
-          Begin your path toward <br className="hidden md:block" />
-          <span className="italic">greater ease.</span>
-        </motion.h2>
+        <h2 className="text-4xl md:text-5xl lg:text-6xl font-serif font-light leading-tight mb-8">
+          {titleWords.map((word, i) => (
+            <motion.span
+              key={i}
+              custom={i}
+              variants={wordVariants}
+              className="inline-block mr-[0.25em] last:mr-0"
+            >
+              {word.toLowerCase().includes("ease") ? (
+                <span className="italic">{word}</span>
+              ) : (
+                word
+              )}
+            </motion.span>
+          ))}
+        </h2>
 
+        {/* Description */}
         <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.1 }}
+          variants={{
+            hidden: { opacity: 0, filter: "blur(4px)" },
+            visible: {
+              opacity: 0.8,
+              filter: "blur(0px)",
+              transition: { duration: 2, delay: 0.8 },
+            },
+          }}
           className="text-base md:text-xl font-light text-[#F9F7F2]/80 leading-relaxed mb-12 max-w-2xl mx-auto"
         >
-          If you’re ready to feel more grounded and supported, I invite you to
-          schedule a consultation and take the next step toward meaningful
-          change.
+          {CTA_DATA.description}
         </motion.p>
 
         <motion.div
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
+          variants={{
+            hidden: { opacity: 0, y: 20 },
+            visible: {
+              opacity: 1,
+              y: 0,
+              transition: { delay: 1.2, duration: 1 },
+            },
+          }}
         >
           <motion.button
-            whileHover={{ scale: 1.03 }}
-            whileTap={{ scale: 0.98 }}
-            className="group relative inline-flex items-center gap-4 bg-[#F9F7F2] text-[#1A1A1A] px-12 py-5 rounded-full text-[11px] tracking-[0.25em] font-semibold transition-all duration-500 hover:bg-white hover:shadow-[0_20px_40px_rgba(0,0,0,0.1)]"
+            whileHover="hover"
+            className="group relative cursor-pointer inline-flex items-center gap-4 bg-[#F9F7F2] text-[#1A1A1A] px-12 py-5 rounded-full text-[11px] tracking-[0.25em] font-semibold overflow-hidden"
           >
-            <span>SCHEDULE A CONSULTATION</span>
-            <span className="transition-transform duration-300 group-hover:translate-x-2 text-lg">
+            <motion.div
+              variants={{
+                hover: { scale: 1.5, opacity: 1 },
+              }}
+              initial={{ scale: 0, opacity: 0 }}
+              className="absolute inset-0 bg-white -z-10 transition-transform duration-500"
+            />
+
+            <span className="relative z-10">{CTA_DATA.buttonText}</span>
+            <motion.span
+              variants={{
+                hover: { x: 5 },
+              }}
+              className="relative z-10 text-lg transition-transform"
+            >
               →
-            </span>
+            </motion.span>
           </motion.button>
 
           <motion.p
             initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ delay: 0.5 }}
-            className="mt-8 text-[10px] tracking-widest opacity-50 uppercase"
+            whileInView={{ opacity: 0.3 }}
+            transition={{ delay: 2 }}
+            className="mt-8 text-[10px] tracking-widest uppercase"
           >
-            Currently accepting new clients in California
+            {CTA_DATA.footer}
           </motion.p>
         </motion.div>
-      </div>
+      </motion.div>
     </section>
   );
 }

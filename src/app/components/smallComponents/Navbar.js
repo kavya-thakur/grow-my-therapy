@@ -10,7 +10,7 @@ export default function Navbar() {
 
   const scrollToSection = (e, id) => {
     e.preventDefault();
-    setIsOpen(false); // Close menu on click
+    setIsOpen(false);
     const element = document.getElementById(id);
     if (element) {
       const offset = 80;
@@ -27,7 +27,7 @@ export default function Navbar() {
   };
 
   return (
-    <header className="fixed top-0 left-0 w-full z-[100] bg-[#F9F7F2]/80 backdrop-blur-md border-b border-black/[0.03]">
+    <header className="fixed top-0 left-0 w-full z-[100] bg-[#F9F7F2]/10 backdrop-blur-sm border-b border-black/[0.03]">
       <div className="max-w-7xl mx-auto px-6 h-20 flex justify-between items-center">
         {/* LOGO */}
         <div
