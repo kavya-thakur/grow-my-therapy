@@ -96,7 +96,7 @@ export default function Hero() {
                 whileTap={{ scale: 0.98 }}
                 className="group relative px-8 sm:px-10 py-4 sm:py-5 bg-[#1A1A1A] text-white rounded-full overflow-hidden transition-all duration-300 shadow-md"
               >
-                <span className="relative z-10 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] font-medium whitespace-nowrap">
+                <span className="relative cursor-pointer z-10 text-[10px] sm:text-[11px] uppercase tracking-[0.3em] font-medium whitespace-nowrap">
                   Schedule a Consultation
                 </span>
                 <div className="absolute inset-0 bg-[#6B705C] translate-y-full group-hover:translate-y-0 transition-transform duration-500" />
